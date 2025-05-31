@@ -34,7 +34,7 @@ Follow the steps below to set up and run the project locally:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Apollo-Level2-Web-Dev/NextMert-Server.git
+   git clone https://github.com/emtiaz-ahmed-13/NextMert-Server.git
    cd NextMert-Server
    ```
 
@@ -126,10 +126,4 @@ CANCEL_URL="<your_cancel_url>"
 
 ---
 
-## API Documentation
-
-[https://documenter.getpostman.com/view/28371413/2sAYQXpCyd](https://documenter.getpostman.com/view/28371413/2sAYQXpCyd)
-
-**NextMart** is a single-vendor e-commerce platform. This repository contains the server-side implementation, providing robust backend services and APIs to power the platform.
-
-# mart_server
+# next_server
