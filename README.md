@@ -96,7 +96,7 @@ SENDER_EMAIL="<your_email>"
 SENDER_APP_PASS="<your_app_password>"
 
 # SSLCommerz Payment Info
-STORE_NAME=testapollh59d
+STORE_NAME=
 PAYMENT_API="https://sandbox.sslcommerz.com/gwprocess/v3/api.php"
 VALIDATION_API="https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php"
 STORE_ID="<your_store_id>"
