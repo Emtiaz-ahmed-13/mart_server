@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { StatusCodes } from "http-status-codes";
-import jwt, { JwtPayload, Secret } from "jsonwebtoken";
+import jwt, { JwtPayload, Secret, SignOptions } from "jsonwebtoken";
 import mongoose, { ClientSession } from "mongoose";
 import config from "../../config";
 import AppError from "../../errors/appError";
@@ -40,14 +40,14 @@ const loginUser = async (payload: IAuth) => {
 
     const accessToken = createToken(
       jwtPayload,
-      config.jwt_access_secret as string,
-      config.jwt_access_expires_in as string
+      config.jwt_access_secret as Secret,
+      config.jwt_access_expires_in
     );
 
     const refreshToken = createToken(
       jwtPayload,
-      config.jwt_refresh_secret as string,
-      config.jwt_refresh_expires_in as string
+      config.jwt_refresh_secret as Secret,
+      config.jwt_refresh_expires_in
     );
 
     const updateUserInfo = await User.findByIdAndUpdate(
@@ -101,7 +101,7 @@ const refreshToken = async (token: string) => {
   const newAccessToken = createToken(
     jwtPayload,
     config.jwt_access_secret as Secret,
-    config.jwt_access_expires_in as string
+    config.jwt_access_expires_in
   );
 
   return {
@@ -156,9 +156,15 @@ const forgotPassword = async ({ email }: { email: string }) => {
 
   const otp = generateOtp();
 
-  const otpToken = jwt.sign({ otp, email }, config.jwt_otp_secret as string, {
-    expiresIn: "5m",
-  });
+  const otpOptions: SignOptions = {
+    expiresIn: "5m" as jwt.SignOptions["expiresIn"],
+  };
+
+  const otpToken = jwt.sign(
+    { otp, email },
+    config.jwt_otp_secret as Secret,
+    otpOptions
+  );
 
   await User.updateOne({ email }, { otpToken });
 
@@ -209,12 +215,14 @@ const verifyOTP = async ({ email, otp }: { email: string; otp: string }) => {
   user.otpToken = null;
   await user.save();
 
+  const resetOptions: SignOptions = {
+    expiresIn: config.jwt_pass_reset_expires_in as jwt.SignOptions["expiresIn"],
+  };
+
   const resetToken = jwt.sign(
-    { email },
-    config.jwt_pass_reset_secret as string,
-    {
-      expiresIn: config.jwt_pass_reset_expires_in,
-    }
+    { id: user._id },
+    config.jwt_pass_reset_secret as Secret,
+    resetOptions
   );
 
   // Return the reset token
