@@ -1,6 +1,5 @@
 # NextMart - Server
 
-
 NextMart is a robust and scalable backend solution for an e-commerce platform. It handles user authentication, product management, order processing, payment integration, and more. Built with Node.js, Express.js, and MongoDB, this project is designed for high performance and flexibility.
 
 ---
@@ -16,6 +15,10 @@ NextMart is a robust and scalable backend solution for an e-commerce platform. I
 
 ---
 
+## deployment Link
+
+- https://nextmart-server-bjxpvszp3-emtiaz-ahmed-13s-projects.vercel.app/
+
 ## Installation Guide
 
 Follow the steps below to set up and run the project locally:
@@ -29,12 +32,14 @@ Follow the steps below to set up and run the project locally:
 ### Steps
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/Apollo-Level2-Web-Dev/NextMert-Server.git
    cd NextMert-Server
    ```
 
 2. Install dependencies:
+
    ```bash
    yarn install
    # or
@@ -44,6 +49,7 @@ Follow the steps below to set up and run the project locally:
 3. Create a `.env` file in the root directory and configure the environment variables as shown below.
 
 4. Run the development server:
+
    ```bash
    yarn dev
    # or
@@ -105,15 +111,15 @@ CANCEL_URL="<your_cancel_url>"
 
 ## Scripts
 
-- **Start Development Server**: 
+- **Start Development Server**:
   ```bash
   yarn dev
   ```
-- **Build Production**: 
+- **Build Production**:
   ```bash
   yarn build
   ```
-- **Run in Production Mode**: 
+- **Run in Production Mode**:
   ```bash
   yarn start
   ```
